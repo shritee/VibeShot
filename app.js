@@ -13,7 +13,7 @@ app.use(cors({
   }));
 // parse application/json
 app.use(bodyParser.json())
-app.get('/',(req,res)=>{
+app.get('/api/usertake',(req,res)=>{
     res.send("hello world")
 });
 app.use(express.json());
