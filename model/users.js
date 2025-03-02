@@ -4,11 +4,16 @@ module.exports = (sequelize,DataTypes)=>{
         'User',
         {
           // Model attributes are defined here
+           id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
+          },
           email: {
               type: DataTypes.STRING,
               allowNull: false,
               validate: {
-                  is: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                isEmail: true
               }
           },
           display_name: {

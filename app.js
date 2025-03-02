@@ -1,7 +1,6 @@
 const express = require('express')
 var bodyParser = require('body-parser');
 const cors = require('cors');
-const { signupuser,getusers,getuser } = require('./controller/user.js');
 const AuthRoutes = require('./routes/user.js');
 
 require('./db/index.js')
@@ -18,7 +17,7 @@ app.get('/',(req,res)=>{
     res.send("hello world")
 });
 app.use(express.json());
-app.use('/auth',AuthRoutes)
+app.use('/',AuthRoutes)
 app.listen(3300,()=>{
     console.log("Port running at 3000");
     
