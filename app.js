@@ -6,18 +6,25 @@ const AuthRoutes = require('./routes/user.js');
 require('./db/index.js')
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cors({
-    origin: 'http://localhost:4300', // Allow Angular frontend
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization'
-  }));
+app.use("/uploads", express.static("uploads"));
+app.use(
+    cors({
+      origin: "http://localhost:4300", // Allow only frontend origin
+      methods: "GET,POST,PUT,DELETE", // Allowed request methods
+      allowedHeaders: "Content-Type,Authorization,token", // Allow custom headers
+      credentials: true, // Allow sending cookies
+    })
+  );
 // parse application/json
 app.use(bodyParser.json())
 app.get('/api/usertake',(req,res)=>{
-    res.send("hello world")
+    res.send({
+        "user":"hello world","env":`${env.DB_PORT}`
+    },)
 });
 app.use(express.json());
 app.use('/api',AuthRoutes)
+
 app.listen(3300,()=>{
     console.log("Port running at 3000");
     

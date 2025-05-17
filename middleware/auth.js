@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.JWT_SECRET || "vibeshot42@Secret~key";
 
 // Middleware to verify token
-const verifyToken = (req, res, next) => {
-  const token = req.header("Authorization")?.split(" ")[1];
+const authenticate = (req, res, next) => {
+  const token = req.header("Authorization")?.split(" ")[0];
 
   if (!token) {
     return res.status(403).json({ message: "Access denied, token missing" });
@@ -18,4 +18,4 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken };
+module.exports = { authenticate };

@@ -4,7 +4,7 @@ const otpStore = new Map(); // Temporary storage (use Redis for production)
 
 function generateOTP(length = 6) {
     const otp = crypto.randomInt(10 ** (length - 1), 10 ** length).toString();
-    const expiry = Date.now() + 5 * 60 * 1000; // OTP expires in 5 minutes
+    const expiry = Date.now() + 1 * 60 * 1000; // OTP expires in 1 minutes
     return { otp, expiry };
 }
 

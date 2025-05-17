@@ -19,5 +19,11 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   db.Sequelize = Sequelize;
   db.sequelize = sequelize;
   db.users = require('../model/users.js')(sequelize,DataTypes);
+  db.upload = require('../model/file.js')(sequelize,DataTypes);
+  // Define relationships
+db.users.hasMany(db.upload, { foreignKey: "userId", onDelete: "CASCADE" });
+db.upload.belongsTo(db.users, { foreignKey: "userId" });
+// db.sequelize.sync({ force: true });
+
   sequelize.sync();
   module.exports = db;
