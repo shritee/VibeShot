@@ -24,8 +24,9 @@ app.get('/api/usertake',(req,res)=>{
 });
 app.use(express.json());
 app.use('/api',AuthRoutes)
-
-app.listen(3300,()=>{
+app.get('/', (req, res) => {
+  res.send('Welcome to the API server');
+});
+app.listen(3300,(res)=>{
     console.log("Port running at 3000");
-    
 })
