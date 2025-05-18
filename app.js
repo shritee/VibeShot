@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use("/uploads", express.static("uploads"));
 app.use(
     cors({
-      origin: "http://localhost:4300", // Allow only frontend origin
+      origin: "*", // Allow only frontend origin
       methods: "GET,POST,PUT,DELETE", // Allowed request methods
       allowedHeaders: "Content-Type,Authorization,token", // Allow custom headers
       credentials: true, // Allow sending cookies
